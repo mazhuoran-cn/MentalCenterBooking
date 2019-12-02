@@ -8,4 +8,13 @@ class User < ApplicationRecord
 
   has_secure_password
   validates :password, presence: true, length: { minimum: 8 }
+
+  scope :admins, -> { where(type: 'Admin') }
+  scope :teachers, -> { where(type: 'Teacher') }
+  scope :students, -> { where(type: 'Student') }
+
+  def self.types
+    %w(Admin Teacher Student)
+  end
 end
+

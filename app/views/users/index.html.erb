@@ -7,9 +7,7 @@
   <tr>
     <th>Name</th>
     <th>Email</th>
-    <th>Student</th>
-    <th>Teacher</th>
-    <th>Admin</th>
+    <th>Type</th>
     <th colspan="3"></th>
   </tr>
   </thead>
@@ -19,12 +17,11 @@
     <tr>
       <td><%= user.name %></td>
       <td><%= user.email %></td>
-      <td><%= user.student? %></td>
-      <td><%= user.teacher? %></td>
-      <td><%= user.admin? %></td>
-      <td><%= link_to 'Show', user %></td>
+      <td><%= user.type %></td>
+      <td><%= link_to 'Show', sti_user_path(user.type, user) %></td>
       <td><%= link_to 'Edit', edit_user_path(user) %></td>
       <td><%= link_to 'Destroy', user, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+      <td><%= link_to "See all #{user.type.pluralize}", sti_user_path(user.type) %></td>
     </tr>
   <% end %>
   </tbody>
@@ -32,4 +29,5 @@
 
 <br>
 
-<%= link_to 'New User', new_user_path %>
+<%= link_to "New #{@type}", sti_user_path(@type, nil, :new) %>
+<%= link_to 'See all users', sti_user_path %>

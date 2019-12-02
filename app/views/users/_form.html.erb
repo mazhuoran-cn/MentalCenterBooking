@@ -22,6 +22,15 @@
   </div>
 
   <div class="field">
+    <%= form.label :type %><br>
+    <%= form.select :type, User.types.map {|r| [r.humanize]}, {}, disabled: @type != "User" %>
+
+    <% if @type != "User" %>
+      <%= form.hidden_field :type, value: @type%>
+    <% end %>
+  </div>
+
+  <div class="field">
     <%= form.label :school_id, "School Id" %>
     <%= form.text_field :school_id %>
   </div>
@@ -34,21 +43,6 @@
   <div class="field">
     <%= form.label :password_confirmation, "Confirmation" %>
     <%= form.password_field :password_confirmation %>
-  </div>
-
-  <div class="field">
-    <%= form.label :student %>
-    <%= form.number_field :student %>
-  </div>
-
-  <div class="field">
-    <%= form.label :teacher %>
-    <%= form.number_field :teacher %>
-  </div>
-
-  <div class="field">
-    <%= form.label :admin %>
-    <%= form.number_field :admin %>
   </div>
 
   <div class="actions">

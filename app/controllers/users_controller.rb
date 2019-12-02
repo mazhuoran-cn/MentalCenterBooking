@@ -1,22 +1,11 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-
-  def student?
-    @user[:student]
-  end
-
-  def teacher?
-    @user[:teacher]
-  end
-
-  def admin?
-    @user[:admin]
-  end
+  before_action :set_type
 
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    @users = type_class.all
   end
 
   # GET /users/1
@@ -26,7 +15,7 @@ class UsersController < ApplicationController
 
   # GET /users/new
   def new
-    @user = User.new
+    @user = type_class.new
   end
 
   # GET /users/1/edit
@@ -40,7 +29,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        format.html { redirect_to @user, notice: "#{type} was successfully created." }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
@@ -82,7 +71,20 @@ class UsersController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
-    params.require(:user).permit(:name, :email, :teacher, :student, :admin,
-                                 :password, :password_confirmation, :school_id)
+    params.require(type.underscore.to_sym).permit(:name, :email, :type, :password, :password_confirmation, :school_id)
+  end
+
+  #private
+  #
+  def set_type
+    @type = type
+  end
+
+  def type
+    User.types.include?(params[:type]) ? params[:type] : 'User'
+  end
+
+  def type_class
+    type.constantize
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_29_123538) do
+ActiveRecord::Schema.define(version: 2019_11_29_132916) do
 
   create_table "rooms", force: :cascade do |t|
     t.boolean "using"
@@ -30,11 +30,9 @@ ActiveRecord::Schema.define(version: 2019_11_29_123538) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "password"
-    t.boolean "student"
-    t.boolean "teacher"
-    t.boolean "admin"
     t.integer "school_id"
     t.string "password_digest"
+    t.string "type"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["school_id"], name: "index_users_on_school_id", unique: true
   end
