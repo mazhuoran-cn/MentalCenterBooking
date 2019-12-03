@@ -9,5 +9,13 @@
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:D:\ST\Code\Ruby\Rails\MentalCenterBooking\db\development.sqlite3</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="Rails MentalCenterBooking: test" uuid="80e65d38-8578-40cc-9a10-695681a094aa">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/config/database.yml</remarks>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:D:\ST\Code\Ruby\Rails\MentalCenterBooking\db\test.sqlite3</jdbc-url>
+    </data-source>
   </component>
 </project>

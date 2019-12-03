@@ -1,0 +1,13 @@
+<header>
+  <%= link_to "MCB", root_path %>
+  <% if logged_in? %>
+    <%= link_to "Users", '#' %>
+    <%= link_to "Profile", @current_user %>
+    <%= link_to "Settings", '#' %>
+    <%= link_to "Log out", logout_path, method: "delete" %>
+    <%= @current_user.type %>
+    <%= @current_user.name %>
+  <% else %>
+    <%= link_to "Log in", login_path %>
+  <% end %>
+</header>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_29_132916) do
+ActiveRecord::Schema.define(version: 2019_12_03_074906) do
 
   create_table "rooms", force: :cascade do |t|
     t.boolean "using"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 2019_11_29_132916) do
     t.integer "school_id"
     t.string "password_digest"
     t.string "type"
+    t.string "remember_digest"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["school_id"], name: "index_users_on_school_id", unique: true
   end
