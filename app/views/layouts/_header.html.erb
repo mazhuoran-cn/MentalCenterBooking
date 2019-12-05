@@ -2,9 +2,9 @@
   <%= link_to "MCB", root_path %>
   <%= link_to "Help", help_path %>
   <% if logged_in? %>
-    <%= link_to "Users", user_path %>
+    <%= link_to "Users", '#' %>
     <%= link_to "Profile", @current_user %>
-    <%= link_to "Settings", '#' %>
+    <%= link_to "Settings", sti_user_path(@current_user.type, @current_user, :edit) %>
     <%= link_to "Log out", logout_path, method: "delete" %>
     <%= @current_user.type %>
     <%= @current_user.name %>

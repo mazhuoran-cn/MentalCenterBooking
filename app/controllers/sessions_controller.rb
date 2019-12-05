@@ -10,8 +10,8 @@ class SessionsController < ApplicationController
       if user && user.authenticate(params[:session][:password])
         log_in user
         params[:session][:remember_me] == '1' ? remember(user) : forget(user)
-        remember user
-        format.html { redirect_to user, notice: "#{user.type} #{user.name} was successfully log in." }
+        #redirect_back_or user
+        format.html { redirect_back_or user, notice: "#{user.type} #{user.name} was successfully log in." }
       else
         format.html { redirect_to login_url, alert: 'Invalid email/password combination' }
       end
