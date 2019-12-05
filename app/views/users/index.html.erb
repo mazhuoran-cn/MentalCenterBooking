@@ -18,17 +18,15 @@
       <td><%= user.name %></td>
       <td><%= user.email %></td>
       <td><%= user.type %></td>
-      <td><%= user.admin? %></td>
-      <% if @current_user.admin? && !current_user?(user) %>
-        <td><%= link_to 'Destroy', user, method: :delete, data: {confirm: 'Are you sure?'} %></td>
-      <% end %>
+      <td><%= link_to 'Show', sti_user_path(user.type, user) %></td>
+      <td><%= link_to 'Edit', edit_user_path(user) %></td>
+      <td><%= link_to 'Destroy', user, method: :delete, data: {confirm: 'Are you sure?'} %></td>
       <td><%= link_to "See all #{user.type.pluralize}", sti_user_path(user.type) %></td>
     </tr>
   <% end %>
   </tbody>
 </table>
 
-<%= will_paginate %>
 <br>
 
 <%= link_to "New #{@type}", sti_user_path(@type, nil, :new) %>

@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = type_class.paginate(page: params[:page], per_page: 30)
+    @users = type_class.all
   end
 
   # GET /users/1
@@ -96,7 +96,7 @@ class UsersController < ApplicationController
     unless logged_in?
       store_location
       respond_to do |format|
-        format.html { redirect_to login_url, alert: "Please log in." }
+        format.html {redirect_to login_url, alert: "Please log in."}
       end
     end
   end
