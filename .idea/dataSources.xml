@@ -7,7 +7,7 @@
       <imported>true</imported>
       <remarks>$PROJECT_DIR$/config/database.yml</remarks>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:D:\ST\Code\Ruby\Rails\MentalCenterBooking\db\development.sqlite3</jdbc-url>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/db/development.sqlite3</jdbc-url>
     </data-source>
     <data-source source="LOCAL" name="Rails MentalCenterBooking: test" uuid="80e65d38-8578-40cc-9a10-695681a094aa">
       <driver-ref>sqlite.xerial</driver-ref>
@@ -16,6 +16,20 @@
       <remarks>$PROJECT_DIR$/config/database.yml</remarks>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:D:\ST\Code\Ruby\Rails\MentalCenterBooking\db\test.sqlite3</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="development" uuid="70a776ac-4c32-49f4-9acb-5dae94df6e33">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Users\mzhr0\OneDrive - mails.ucas.ac.cn\ST\Code\Ruby\Rails\MentalCenterBooking\db\development.sqlite3</jdbc-url>
+      <libraries>
+        <library>
+          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/Xerial SQLiteJDBC/3.25.1/license.txt</url>
+        </library>
+        <library>
+          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/Xerial SQLiteJDBC/3.25.1/sqlite-jdbc-3.25.1.jar</url>
+        </library>
+      </libraries>
     </data-source>
   </component>
 </project>

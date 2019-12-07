@@ -21,13 +21,20 @@ gem 'jbuilder', '~> 2.7'
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 gem 'bcrypt', '~> 3.1.7'
-
+############################################################################################
 # pagination
 gem 'will_paginate', '3.2.1'
 
 # bootstrap will_paginate
-#gem 'bootstrap-will_paginate', '1.0.0'
-
+gem 'bootstrap-will_paginate', '1.0.0'
+gem 'rails_admin'
+gem 'devise'
+gem 'cancancan'
+gem 'paper_trail'
+gem 'paper_trail-association_tracking'
+#gem 'bootstrap-sass', '~> 3.4.1'
+#gem 'sassc-rails', '>= 2.1.0'
+#gem 'jquery-rails'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
