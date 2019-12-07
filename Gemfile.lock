@@ -62,15 +62,10 @@ GEM
       zeitwerk (~> 2.2)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
-    autoprefixer-rails (9.7.3)
-      execjs
     bcrypt (3.1.13)
     bindex (0.8.1)
     bootsnap (1.4.5)
       msgpack (~> 1.0)
-    bootstrap-sass (3.4.1)
-      autoprefixer-rails (>= 5.2.1)
-      sassc (>= 2.0.0)
     bootstrap-will_paginate (1.0.0)
       will_paginate
     builder (3.2.3)
@@ -94,7 +89,7 @@ GEM
       responders
       warden (~> 1.2.3)
     erubi (1.9.0)
-    execjs (2.7.0)
+    ffi (1.11.2)
     ffi (1.11.2-x64-mingw32)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
@@ -135,9 +130,12 @@ GEM
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
     minitest (5.13.0)
+    msgpack (1.3.1)
     msgpack (1.3.1-x64-mingw32)
     nested_form (0.3.2)
     nio4r (2.5.2)
+    nokogiri (1.10.5)
+      mini_portile2 (~> 2.4.0)
     nokogiri (1.10.5-x64-mingw32)
       mini_portile2 (~> 2.4.0)
     orm_adapter (0.5.0)
@@ -146,7 +144,7 @@ GEM
       request_store (~> 1.1)
     paper_trail-association_tracking (2.0.0)
     public_suffix (4.0.1)
-    puma (3.12.1)
+    puma (3.12.2)
     rack (2.0.7)
     rack-pjax (1.1.0)
       nokogiri (~> 1.5)
@@ -216,6 +214,8 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
+    sassc (2.2.1)
+      ffi (~> 1.9)
     sassc (2.2.1-x64-mingw32)
       ffi (~> 1.9)
     sassc-rails (2.1.2)
@@ -270,26 +270,24 @@ GEM
     zeitwerk (2.2.1)
 
 PLATFORMS
+  ruby
   x64-mingw32
 
 DEPENDENCIES
   bcrypt (~> 3.1.7)
   bootsnap (>= 1.4.2)
-  bootstrap-sass (~> 3.4.1)
   bootstrap-will_paginate (= 1.0.0)
   byebug
   cancancan
   capybara (>= 2.15)
   devise
   jbuilder (~> 2.7)
-  jquery-rails
   paper_trail
   paper_trail-association_tracking
-  puma (~> 3.11)
+  puma (~> 3.12)
   rails (~> 6.0.0)
   rails_admin
   sass-rails (~> 5)
-  sassc-rails (>= 2.1.0)
   selenium-webdriver
   sqlite3 (~> 1.4)
   turbolinks (~> 5)
