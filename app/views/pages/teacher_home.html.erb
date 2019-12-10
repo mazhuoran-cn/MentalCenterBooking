@@ -1,0 +1,27 @@
+<h3>Locations</h3>
+<% if current_teacher.locations.any? %>
+  <table>
+    <thead>
+    <tr>
+      <th>Place</th>
+      <th>Start Time</th>
+      <th>Finish Time</th>
+      <th>Weekday</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% current_teacher.locations[0..-2].each do |l| %>
+      <tr class="locations">
+        <td><%= l.place %></td>
+        <td><%= l.start_time.to_formatted_s(format = :hm) %></td>
+        <td><%= l.finish_time.to_formatted_s(format = :hm) %></td>
+        <td><%= l.weekday %></td>
+        <td><%= link_to 'Destroy', l, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% end %>
+<section class="location_form">
+  <%= render 'location_form' %>
+</section>
