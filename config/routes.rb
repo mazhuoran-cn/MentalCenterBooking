@@ -21,6 +21,8 @@ Rails.application.routes.draw do
     get 'student_schedule', to:'pages#student_schedule'
     get 'student_new_schedule', to: 'students/schedules#new'
     post 'student_schedule', to: 'students/schedules#create'
+    delete 'destroy_student_schedule', to: 'students/schedules#destroy'
+    get 'renew_student_schedule', to: 'students/schedules#renew'
   end
   devise_scope :teachers do
     get 'teacher_sign_in', to:'teachers/sessions#new'

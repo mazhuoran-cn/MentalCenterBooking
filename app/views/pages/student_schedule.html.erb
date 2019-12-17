@@ -1,10 +1,14 @@
 <% if current_student.schedule %>
   <% s = current_student.schedule %>
   <% l = s.location %>
-  <%= "Your schedule is will start at #{l.weekday}, #{s.next_start_time}." %>
-  <%= "Your scheduled campus is #{l.place}, your teacher is #{l.teacher.name}." %>
-  <%= link_to "Renew schedule!", '#' %>
-  <%= link_to "Destroy schedule!", '#' %>
+  <%= "Your scheduled campus is #{l.place}, your teacher is #{l.teacher.name}, you have do #{s.scheduled_times+1} times." %><br />
+  <% if Time.now < s.next_start_time %>
+    <%= "Your schedule is will start at #{l.weekday}, #{s.next_start_time}." %>
+  <% else %>
+    <%= "Your last schedule was started at #{l.weekday}, #{s.next_start_time}. Do you want to renew schedule?" %>
+    <%= link_to "Renew schedule!", renew_student_schedule_path %>
+  <% end %>
+  <%= link_to "Destroy schedule!", destroy_student_schedule_path, method: "delete" %>
 <% else %>
-  <%= link_to 'New schedule!', new_students_schedule_path %>
+  <%= link_to 'New schedule!', new_students_schedule_path, method: update%>
 <% end %>

@@ -36,7 +36,6 @@
           <% t.locations.each do |l| %>
             <% unless l.schedules.any? %>
               <tr class="locations">
-                <td><%= l.id %></td>
                 <td><%= l.place %></td>
                 <td><%= l.start_time.to_formatted_s(format = :hm) %></td>
                 <td><%= l.end_time.to_formatted_s(format = :hm) %></td>
