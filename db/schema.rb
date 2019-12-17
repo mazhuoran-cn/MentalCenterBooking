@@ -37,7 +37,8 @@ ActiveRecord::Schema.define(version: 2019_12_13_052527) do
     t.integer "student_id"
     t.integer "teacher_id"
     t.integer "location_id"
-    t.integer "schedule_user_id"
+    t.integer "scheduled_times"
+    t.datetime "next_start_time"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "state"

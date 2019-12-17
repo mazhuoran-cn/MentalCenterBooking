@@ -3,7 +3,7 @@ class Location < ApplicationRecord
   before_save :calc_end_time
   before_update :calc_end_time
   enum place: [:中关村, :玉泉路, :奥运村, :岳阳路]
-  enum weekday: [:Monday, :Tuesday, :Wednesday, :Thursday, :Friday, :Saturday, :Sunday]
+  enum weekday: {Monday: 1, Tuesday: 2, Wednesday: 3, Thursday: 4, Friday: 5, Saturday: 6, Sunday: 7}
   belongs_to :teacher
   has_many :schedules
 

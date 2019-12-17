@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   devise_for :students, controllers: {
       sessions: 'students/sessions',
       registrations: 'students/registrations',
-      #schedules: 'students/schedules',
+      schedules: 'students/schedules',
       #scheduled_students: 'students/scheduled_students'
   }
   devise_for :teachers, controllers: {
@@ -19,6 +19,8 @@ Rails.application.routes.draw do
     get 'student_forgot_password', to:'students/passwords#new'
     get 'student_reset_password', to:'students/password#edit'
     get 'student_schedule', to:'pages#student_schedule'
+    get 'student_new_schedule', to: 'students/schedules#new'
+    post 'student_schedule', to: 'students/schedules#create'
   end
   devise_scope :teachers do
     get 'teacher_sign_in', to:'teachers/sessions#new'

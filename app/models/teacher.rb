@@ -8,6 +8,8 @@ class Teacher < ApplicationRecord
   has_many :locations, dependent: :destroy
   has_many :schedules
 
+  scope :has_location, -> { joins(:locations).where('locations')}
+
   def set_default_role
     self.role ||= :normal
   end

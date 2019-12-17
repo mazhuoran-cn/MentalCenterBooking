@@ -19,7 +19,6 @@ class LocationsController < ApplicationController
     respond_to do |format|
       format.html {redirect_to teacher_location_url, notice: 'Location was successfully destroyed.'}
     end
-
   end
 
   private

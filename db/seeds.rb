@@ -22,7 +22,7 @@ Student.create(name: 'student',
                password_confirmation: '111111')
 
 
-27.times do |n|
+10.times do |n|
   name = Faker::Name.name
   email = "teacher-#{n+1}@ucas.ac.cn"
   password = "111111"
@@ -42,11 +42,11 @@ end
               password_confirmation: password)
 end
 
-teachers = Teacher.order(:created_at).take(6)
+teachers = Teacher.order(:created_at).take(10)
 5.times do |n|
-  weekday = Random.rand(7)
+  weekday = Random.rand(1..7)
   place = Random.rand(4)
-  start_time = '2000-01-01 08:00:00'
-  end_time = '2000-01-01 14:00:00'
+  start_time = Time.new(2000, 1, 1, Random.rand(7..21), 0, 0)
+  end_time = start_time + 1.hour
   teachers.each { |teacher| teacher.locations.create(weekday: weekday, place: place, start_time: start_time, end_time: end_time)}
 end

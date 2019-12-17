@@ -20,7 +20,7 @@
   </div>
   <div class="field">
     <%= form.label :start_time, "Start time" %>
-      <%= form.time_select :start_time, {minute_step: 30} %>
+      <%= form.time_select :start_time, {minute_step: 30, start_hour: 7, end_hour: 21} %>
   </div>
 <!--  <div class="field">-->
       <%#= form.label :end_time, "Finish time" %>

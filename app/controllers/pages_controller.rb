@@ -7,7 +7,6 @@ class PagesController < ApplicationController
   end
 
   def student_schedule
-    @scheduled_student = current_student.build_scheduled_student
+    @teachers = Teacher.all
   end
-
 end
