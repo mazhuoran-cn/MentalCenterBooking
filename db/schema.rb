@@ -10,27 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_09_063212) do
+ActiveRecord::Schema.define(version: 2019_12_13_052527) do
 
   create_table "locations", force: :cascade do |t|
     t.integer "teacher_id"
     t.time "start_time"
-    t.time "finish_time"
+    t.time "end_time"
     t.integer "weekday"
     t.integer "place"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "scheduled_students", force: :cascade do |t|
+    t.integer "state"
+    t.integer "student_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["student_id"], name: "index_scheduled_students_on_student_id"
+  end
+
   create_table "schedules", force: :cascade do |t|
     t.text "description"
     t.datetime "start_time"
-    t.datetime "finish_time"
+    t.datetime "end_time"
     t.integer "student_id"
     t.integer "teacher_id"
     t.integer "location_id"
+    t.integer "schedule_user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "state"
   end
 
   create_table "students", force: :cascade do |t|

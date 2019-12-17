@@ -4,16 +4,20 @@
   <% unless teacher_signed_in? || student_signed_in? %>
   <%=  link_to "Student sign up", new_student_registration_path  %>
   <%=  link_to "Teacher sign up", new_teacher_registration_path  %>
+  <%= link_to "Teacher log in", new_teacher_session_path %>
+  <%= link_to "Student log in", new_student_session_path %>
   <% end %>
   <% if teacher_signed_in? %>
-    <%#= link_to "Users", '#' %>
-    <%= link_to "Profile", '#' %>
+    <%= link_to "Schedules", '#' %>
+    <%= link_to "Locations", teacher_location_path %>
     <%= link_to "Settings", '#' %>
     <%= link_to "Sign out", destroy_teacher_session_path, method: "delete"%>
     <%= current_teacher.role %>
     <%= current_teacher.name %>
-  <% else %>
-    <%= link_to "Teacher log in", new_teacher_session_path %>
-    <%= link_to "Student log in", new_student_session_path %>
+  <% elsif student_signed_in? %>
+    <%= link_to "Schedules", student_schedule_path %>
+    <%= link_to "Settings", '#' %>
+    <%= link_to "Sign out", destroy_student_session_path, method: "delete"%>
+    <%= current_student.name %>
   <% end %>
 </header>

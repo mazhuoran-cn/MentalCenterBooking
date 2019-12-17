@@ -3,7 +3,7 @@ class CreateLocations < ActiveRecord::Migration[6.0]
     create_table :locations do |t|
       t.integer :teacher_id
       t.time :start_time
-      t.time :finish_time
+      t.time :end_time
       t.integer :weekday
       t.integer :place
 

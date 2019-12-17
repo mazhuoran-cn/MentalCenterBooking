@@ -4,11 +4,11 @@ class LocationsController < ApplicationController
     @location = current_teacher.locations.build(location_params)
     if @location.save
       respond_to do |format|
-        format.html {redirect_to root_url, notice: "New location created! "}
+        format.html {redirect_to teacher_location_url, notice: "New location created! "}
       end
     else
       respond_to do |format|
-        format.html {redirect_to root_url, alert: "Cannot creat new location!"}
+        format.html {render :'pages/teacher_location', alert: "Cannot creat new location!"}
       end
     end
   end
@@ -17,13 +17,13 @@ class LocationsController < ApplicationController
     @location = Location.find(params[:id])
     @location.destroy
     respond_to do |format|
-      format.html {redirect_to teacher_home_url, notice: 'Location was successfully destroyed.'}
+      format.html {redirect_to teacher_location_url, notice: 'Location was successfully destroyed.'}
     end
 
   end
 
   private
   def location_params
-    params.require(:location).permit([:start_time, :finish_time, :weekday, :place])
+    params.require(:location).permit([:start_time, :end_time, :weekday, :place])
   end
 end

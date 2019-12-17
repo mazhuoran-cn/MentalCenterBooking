@@ -5,7 +5,7 @@ class Teacher < ApplicationRecord
          :recoverable, :rememberable, :validatable
   after_initialize :set_default_role, :if => :new_record?
   enum role: [:normal, :admin]
-  has_many :locations
+  has_many :locations, dependent: :destroy
   has_many :schedules
 
   def set_default_role

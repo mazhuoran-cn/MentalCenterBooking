@@ -47,6 +47,6 @@ teachers = Teacher.order(:created_at).take(6)
   weekday = Random.rand(7)
   place = Random.rand(4)
   start_time = '2000-01-01 08:00:00'
-  finish_time = '2000-01-01 14:00:00'
-  teachers.each { |teacher| teacher.locations.create(weekday: weekday, place: place, start_time: start_time, finish_time: finish_time)}
+  end_time = '2000-01-01 14:00:00'
+  teachers.each { |teacher| teacher.locations.create(weekday: weekday, place: place, start_time: start_time, end_time: end_time)}
 end

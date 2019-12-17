@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   #devise_for :students
   devise_for :students, controllers: {
       sessions: 'students/sessions',
-      registrations: 'students/registrations'
+      registrations: 'students/registrations',
+      #schedules: 'students/schedules',
+      #scheduled_students: 'students/scheduled_students'
   }
   devise_for :teachers, controllers: {
       sessions: 'teachers/sessions',
@@ -16,14 +18,14 @@ Rails.application.routes.draw do
     get 'student_sign_up', to:'students/registrations#new'
     get 'student_forgot_password', to:'students/passwords#new'
     get 'student_reset_password', to:'students/password#edit'
-    get 'student_home', to:'pages#student_home'
+    get 'student_schedule', to:'pages#student_schedule'
   end
   devise_scope :teachers do
     get 'teacher_sign_in', to:'teachers/sessions#new'
     get 'teacher_sign_up', to:'teachers/registrations#new'
     get 'teacher_forgot_password', to:'teachers/passwords#new'
     get 'teacher_reset_password', to:'teachers/password#edit'
-    get 'teacher_home', to:'pages#teacher_home'
+    get 'teacher_location', to:'pages#teacher_location'
   end
   #get 'static_pages/home'
   #get 'static_pages/help'
@@ -31,4 +33,9 @@ Rails.application.routes.draw do
   root 'static_pages#home'
   get 'help' => 'static_pages#help'
   resources :locations, only: [:create, :destroy]
+  namespace :students do
+    resources :schedules
+    resources :scheduled_students
+  end
+
 end

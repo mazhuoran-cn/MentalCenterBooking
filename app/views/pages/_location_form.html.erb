@@ -20,12 +20,12 @@
   </div>
   <div class="field">
     <%= form.label :start_time, "Start time" %>
-    <%= form.time_field :start_time %>
+      <%= form.time_select :start_time, {minute_step: 30} %>
   </div>
-  <div class="field">
-    <%= form.label :finish_time, "Finish time" %>
-    <%= form.time_field :finish_time %>
-  </div>
+<!--  <div class="field">-->
+      <%#= form.label :end_time, "Finish time" %>
+      <%#= form.hidden_field :end_time, calc_end_time(start_time) %>
+<!--  </div>-->
   <div class="actions">
     <%= form.submit "New location" %>
   </div>
