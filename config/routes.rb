@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   #devise_for :teachers
   #devise_for :students
   devise_for :students, controllers: {
@@ -30,6 +31,7 @@ Rails.application.routes.draw do
     get 'teacher_forgot_password', to:'teachers/passwords#new'
     get 'teacher_reset_password', to:'teachers/password#edit'
     get 'teacher_location', to:'pages#teacher_location'
+    get 'teacher_schedules', to:'pages#teacher_schedules'
   end
   #get 'static_pages/home'
   #get 'static_pages/help'

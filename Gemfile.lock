@@ -137,10 +137,6 @@ GEM
     nokogiri (1.10.5-x64-mingw32)
       mini_portile2 (~> 2.4.0)
     orm_adapter (0.5.0)
-    paper_trail (10.3.1)
-      activerecord (>= 4.2)
-      request_store (~> 1.1)
-    paper_trail-association_tracking (2.0.0)
     public_suffix (4.0.1)
     puma (3.12.2)
     rack (2.0.7)
@@ -195,8 +191,6 @@ GEM
       ffi (~> 1.0)
     regexp_parser (1.6.0)
     remotipart (1.4.3)
-    request_store (1.4.1)
-      rack (>= 1.4)
     responders (3.0.0)
       actionpack (>= 5.0)
       railties (>= 5.0)
@@ -280,8 +274,6 @@ DEPENDENCIES
   devise
   faker
   jbuilder (~> 2.7)
-  paper_trail
-  paper_trail-association_tracking
   puma (~> 3.12.2)
   rails (~> 6.0.0)
   rails_admin

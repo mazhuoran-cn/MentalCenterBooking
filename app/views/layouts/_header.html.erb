@@ -8,7 +8,7 @@
   <%= link_to "Student log in", new_student_session_path %>
   <% end %>
   <% if teacher_signed_in? %>
-    <%= link_to "Schedules", '#' %>
+    <%= link_to "Schedules", teacher_schedules_path %>
     <%= link_to "Locations", teacher_location_path %>
     <%= link_to "Settings", '#' %>
     <%= link_to "Sign out", destroy_teacher_session_path, method: "delete"%>

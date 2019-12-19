@@ -53,28 +53,46 @@ end
 end
 
 teachers = Teacher.order(:created_at).take(10)
-5.times do |n|
-  weekday = Random.rand(1..7)
-  place = Random.rand(4)
-  start_time = Time.new(2000, 1, 1, Random.rand(7..21), 0, 0)
-  end_time = start_time + 1.hour
-  teachers.each { |teacher| teacher.locations.create(weekday: weekday, place: place, start_time: start_time.to_s(:db), end_time: end_time.to_s(:db))}
+teachers.each do |teacher|
+  5.times do |n|
+    weekday = Random.rand(7)
+    place = Random.rand(4)
+    start_time = Time.new(2000,1,1,Random.rand(1..3)*6,0,0)
+    end_time = start_time + 1.hour
+    3.times do |nn|
+      teacher.locations.create(weekday:weekday, place:place, start_time: (start_time+nn.hour).to_s(:db) , end_time:(end_time+nn.hour).to_s(:db))
+    end
+  end
 end
 
-hss = Student.find_by(id:2)
-hsss = hss.build_schedule
-hsss.location = Location.find_by(id:1)
-hsss.start_time = hsss.location.start_time
-hsss.end_time = hsss.location.end_time
-hsss.teacher = hsss.location.teacher
-hsss.save
+def create_has_schedule_student(student_id, location_id)
+  hss = Student.find_by(id:student_id)
+  hsss = hss.build_schedule
+  hsss.location = Location.find_by(id:location_id)
+  hsss.start_time = hsss.location.start_time
+  hsss.end_time = hsss.location.end_time
+  hsss.teacher = hsss.location.teacher
+  hsss.save
+end
 
-hotss = Student.find_by(id:3)
-hotsss = hotss.build_schedule
-hotsss.location = Location.find_by(id:15)
-hotsss.start_time = hotsss.location.start_time
-hotsss.end_time = hotsss.location.end_time
-hotsss.teacher = hotsss.location.teacher
-hotsss.save
-hotsss = Schedule.find_by(id:2)
-hotsss.update!(next_start_time: hotsss.next_start_time - 1.week)
+def create_has_over_time_schedule_student(student_id, location_id)
+  hotss = Student.find_by(id: student_id)
+  hotsss = hotss.build_schedule
+  hotsss.location = Location.find_by(id: location_id)
+  hotsss.start_time = hotsss.location.start_time
+  hotsss.end_time = hotsss.location.end_time
+  hotsss.teacher = hotsss.location.teacher
+  hotsss.save
+  hotsss.update!(next_start_time: hotsss.next_start_time - 1.week)
+end
+
+create_has_schedule_student(2, 1)
+create_has_over_time_schedule_student(3, 15)
+
+30.times do |n|
+  create_has_schedule_student(n+5,n+7)
+end
+
+15.times do |n|
+  create_has_over_time_schedule_student(n+35, n+50)
+end

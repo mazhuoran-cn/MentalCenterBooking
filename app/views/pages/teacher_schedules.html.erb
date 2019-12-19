@@ -1,0 +1,44 @@
+<h2>Your schedules</h2>
+<table>
+  <thead>
+  <tr>
+    <th>Student Name</th>
+    <th>Date</th>
+    <th>Start Time</th>
+    <th>Place</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @schedules.each do |schedule| %>
+  <tr>
+    <td><%= schedule.student.name %></td>
+    <td><%= schedule.next_start_time.strftime("%Y-%m-%d") %></td>
+    <td><%= schedule.next_start_time.to_s(:hm) %></td>
+    <td><%= schedule.location.place %></td>
+  </tr>
+  <% end %>
+  </tbody>
+</table>
+<h4>Over timed schedules (not renew yet)</h4>
+<table>
+  <thead>
+  <tr>
+    <th>Student Name</th>
+    <th>Date</th>
+    <th>Start Time</th>
+    <th>Place</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @over_time_schedules.each do |schedule| %>
+    <tr>
+      <td><%= schedule.student.name %></td>
+      <td><%= schedule.next_start_time.strftime("%Y-%m-%d") %></td>
+      <td><%= schedule.next_start_time.to_s(:hm) %></td>
+      <td><%= schedule.location.place %></td>
+<!--     TODO: -->
+      <td><%= link_to "Destroy", '#' %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

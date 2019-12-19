@@ -7,6 +7,7 @@ class Teacher < ApplicationRecord
   enum role: [:normal, :admin]
   has_many :locations, dependent: :destroy
   has_many :schedules
+  has_paper_trail
 
   scope :has_location, -> { joins(:locations).where('locations')}
 

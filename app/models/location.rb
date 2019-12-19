@@ -3,14 +3,21 @@ class Location < ApplicationRecord
   before_save :calc_end_time
   before_update :calc_end_time
   enum place: [:中关村, :玉泉路, :奥运村, :岳阳路]
-  enum weekday: {Monday: 1, Tuesday: 2, Wednesday: 3, Thursday: 4, Friday: 5, Saturday: 6, Sunday: 7}
+  enum weekday: {Monday: 1, Tuesday: 2, Wednesday: 3, Thursday: 4, Friday: 5, Saturday: 6, Sunday: 0}
   belongs_to :teacher
   has_many :schedules
+  has_paper_trail
 
   validates :place, presence: true
   validates :weekday, presence: true
   validates :start_time, presence: true
   validate :valid_start_time
+
+  rails_admin do
+    configure :teacher do
+      label 'Owner of this location: '
+    end
+  end
 
   def calc_end_time
     self.end_time = self.start_time + 1.hour
