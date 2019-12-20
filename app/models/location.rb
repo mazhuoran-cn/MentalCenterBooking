@@ -6,7 +6,6 @@ class Location < ApplicationRecord
   enum weekday: {Monday: 1, Tuesday: 2, Wednesday: 3, Thursday: 4, Friday: 5, Saturday: 6, Sunday: 0}
   belongs_to :teacher
   has_many :schedules
-  has_paper_trail
 
   validates :place, presence: true
   validates :weekday, presence: true

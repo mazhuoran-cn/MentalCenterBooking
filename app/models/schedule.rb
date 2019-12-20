@@ -5,7 +5,6 @@ class Schedule < ApplicationRecord
   belongs_to :location
   before_create :calc_next_start_time, :set_scheduled_times
   #before_update :calc_next_start_time
-  has_paper_trail
 
   scope :current, lambda { where("next_start_time > ?", Time.now) }
   scope :over_time, lambda { where("next_start_time < ?", Time.now) }

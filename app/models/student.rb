@@ -4,5 +4,4 @@ class Student < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_one :schedule, dependent: :destroy
-  has_paper_trail
 end
