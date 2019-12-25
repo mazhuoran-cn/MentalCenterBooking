@@ -65,34 +65,77 @@ teachers.each do |teacher|
   end
 end
 
-def create_has_schedule_student(student_id, location_id)
-  hss = Student.find_by(id:student_id)
-  hsss = hss.build_schedule
-  hsss.location = Location.find_by(id:location_id)
-  hsss.start_time = hsss.location.start_time
-  hsss.end_time = hsss.location.end_time
-  hsss.teacher = hsss.location.teacher
-  hsss.save
+def create_has_schedule_student(student_id)
+ location_size = Location.all.size
+  hss = Student.find_by(id: student_id)
+  scheduled_student = hss.build_scheduled_student
+  locations = []
+  Random.rand(1..5).times do |n|
+    locations.append(Random.rand(1..location_size))
+  end
+  locations.uniq!
+  locations.each do |l|
+    schedule = scheduled_student.schedules.build
+    schedule.location = Location.find_by(id: l)
+    schedule.description = Faker::Quote.famous_last_words
+    schedule.start_time = schedule.location.start_time
+    schedule.end_time = schedule.location.end_time
+    schedule.teacher = schedule.location.teacher
+    schedule.student = hss
+    schedule.status = "pending"
+    schedule.save
+  end
+
+  scheduled_student.status = "pending"
+  scheduled_student.save
+
 end
 
-def create_has_over_time_schedule_student(student_id, location_id)
+def create_has_over_timed_schedule_student(student_id)
+  location_size = Location.all.size
   hotss = Student.find_by(id: student_id)
-  hotsss = hotss.build_schedule
-  hotsss.location = Location.find_by(id: location_id)
-  hotsss.start_time = hotsss.location.start_time
-  hotsss.end_time = hotsss.location.end_time
-  hotsss.teacher = hotsss.location.teacher
-  hotsss.save
-  hotsss.update!(next_start_time: hotsss.next_start_time - 1.week)
+  scheduled_student = hotss.build_scheduled_student
+  schedule = scheduled_student.schedules.build
+  schedule.location = Location.find_by(id: Random.rand(1..location_size))
+  schedule.description = Faker::Quote.famous_last_words
+  schedule.start_time = schedule.location.start_time
+  schedule.end_time = schedule.location.end_time
+  schedule.teacher = schedule.location.teacher
+  schedule.student = hotss
+  schedule.status = "pending"
+  schedule.save
+
+  if schedule.active?
+    schedule.next_start_time = schedule.next_start_time - 1.week
+    schedule.save
+  end
+
+  scheduled_student.status = 'pending'
+  scheduled_student.save
+
 end
 
-create_has_schedule_student(2, 1)
-create_has_over_time_schedule_student(3, 15)
-
-30.times do |n|
-  create_has_schedule_student(n+5,n+7)
+students = []
+55.times do |n|
+  students.append(Random.rand(5..Student.all.size))
+end
+students.uniq
+create_has_over_timed_schedule_student(3)
+students[0..30].each do |s|
+  create_has_over_timed_schedule_student(s)
+end
+create_has_schedule_student(2)
+students[31..-1].each do |s|
+  create_has_schedule_student(s)
 end
 
-15.times do |n|
-  create_has_over_time_schedule_student(n+35, n+50)
-end
+#create_has_schedule_student(2, 1)
+#create_has_over_time_schedule_student(3, 15)
+#
+#40.times do |n|
+#  create_has_schedule_student(Random.rand(1..70),Random.rand(1..130))
+#end
+#
+#10.times do |n|
+#  create_has_over_time_schedule_student(Random.rand(1..70), Random.rand(1..130))
+#end

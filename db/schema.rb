@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 2019_12_13_052527) do
   end
 
   create_table "scheduled_students", force: :cascade do |t|
-    t.integer "state"
+    t.integer "status"
     t.integer "student_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -37,11 +37,12 @@ ActiveRecord::Schema.define(version: 2019_12_13_052527) do
     t.integer "student_id"
     t.integer "teacher_id"
     t.integer "location_id"
+    t.integer "scheduled_student_id"
     t.integer "scheduled_times"
     t.datetime "next_start_time"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "state"
+    t.integer "status"
   end
 
   create_table "students", force: :cascade do |t|

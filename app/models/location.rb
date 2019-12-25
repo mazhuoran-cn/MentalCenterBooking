@@ -1,5 +1,4 @@
 class Location < ApplicationRecord
-  # TODO: Check time conflict.
   before_save :calc_end_time
   before_update :calc_end_time
   enum place: [:中关村, :玉泉路, :奥运村, :岳阳路]

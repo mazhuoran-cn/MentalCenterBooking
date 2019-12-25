@@ -42,4 +42,5 @@ class Students::SchedulesController < ApplicationController
   def schedule_params
     params.require(:schedule).permit([:description, :location])
   end
+
 end

@@ -1,11 +1,11 @@
 <h3>New Schedule</h3>
 <section class="schedule_form">
-<%= form_for([current_student, @schedule], url: student_schedule_path) do |form| %>
-  <% if @schedule.errors.any? %>
+<%= form_for([current_student, @scheduled_student], url:create_scheduled_students_path) do |form| %>
+  <% if @scheduled_student.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@schedule.errors.count, "error") %> prohibited this location from being saved:</h2>
+      <h2><%= pluralize(@scheduled_student.errors.count, "error") %> prohibited this location from being saved:</h2>
       <ul>
-        <% @schedule.errors.full_messages.each do |message| %>
+        <% @scheduled_student.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
       </ul>
@@ -17,7 +17,7 @@
     </div>
   <div class="field">
     <%= form.label :description, "Please describe the topic you want to discuss with teacher." %>
-    <%= form.text_area :description %>
+    <%= text_area :schedule, :description %>
   </div>
   <div class="table">
     <% Teacher.all.each do |t| %>
@@ -30,19 +30,23 @@
             <th>Start Time</th>
             <th>Finish Time</th>
             <th>Weekday</th>
+            <th>Need to queue?</th>
           </tr>
           </thead>
           <tbody>
           <% t.locations.each do |l| %>
-            <% unless l.schedules.any? %>
               <tr class="locations">
                 <td><%= l.place %></td>
                 <td><%= l.start_time.to_formatted_s(format = :hm) %></td>
                 <td><%= l.end_time.to_formatted_s(format = :hm) %></td>
                 <td><%= l.weekday %></td>
-                <td><%= radio_button("schedule", "location", l.id) %></td>
+                <% if l.schedules.any? %>
+                  <td><%= "Yes, #{check_pending_num(l) + 1} people before you." %><td>
+                <% else %>
+                  <td>No</td>
+                <% end %>
+                <td><%= check_box("schedule[locations]", l.id) %></td>
               </tr>
-            <% end %>
           <% end %>
           </tbody>
         </table>

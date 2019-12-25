@@ -2,46 +2,37 @@
 
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  #devise_for :teachers
-  #devise_for :students
   devise_for :students, controllers: {
       sessions: 'students/sessions',
       registrations: 'students/registrations',
       schedules: 'students/schedules',
-      #scheduled_students: 'students/scheduled_students'
+      scheduled_students: 'students/scheduled_students'
   }
   devise_for :teachers, controllers: {
       sessions: 'teachers/sessions',
       registrations: 'teachers/registrations'
   }
   devise_scope :students do
-    get 'student_sign_in', to:'students/sessions#new'
-    get 'student_sign_up', to:'students/registrations#new'
-    get 'student_forgot_password', to:'students/passwords#new'
-    get 'student_reset_password', to:'students/password#edit'
-    get 'student_schedule', to:'pages#student_schedule'
-    get 'student_new_schedule', to: 'students/schedules#new'
-    post 'student_schedule', to: 'students/schedules#create'
-    delete 'destroy_student_schedule', to: 'students/schedules#destroy'
-    get 'renew_student_schedule', to: 'students/schedules#renew'
+    get 'students/sign_in', to:'students/sessions#new', as: :students_sign_in
+    get 'students/sign_up', to:'students/registrations#new', as: :students_sign_up
+    get 'students/forgot_password', to:'students/passwords#new', as: :students_forgot_password
+    get 'students/reset_password', to:'students/password#edit', as: :students_reset_password
+    get 'students/schedule', to:'pages#student_schedule', as: :students_schedule
+    get 'students/new_schedule', to: 'students/scheduled_students#new', as: :new_scheduled_students
+    post 'students/scheduled_student', to: 'students/scheduled_students#create', as: :create_scheduled_students
+    delete 'students/scheduled_student', to: 'students/scheduled_students#destroy', as: :delete_scheduled_students
+    get 'renew_students_schedule', to: 'students/schedules#renew'
   end
   devise_scope :teachers do
-    get 'teacher_sign_in', to:'teachers/sessions#new'
-    get 'teacher_sign_up', to:'teachers/registrations#new'
-    get 'teacher_forgot_password', to:'teachers/passwords#new'
-    get 'teacher_reset_password', to:'teachers/password#edit'
-    get 'teacher_location', to:'pages#teacher_location'
-    get 'teacher_schedules', to:'pages#teacher_schedules'
+    get 'teachers/sign_in', to:'teachers/sessions#new', as: :teachers_sign_in
+    get 'teachers/sign_up', to:'teachers/registrations#new', as: :teachers_sign_up
+    get 'teachers/forgot_password', to:'teachers/passwords#new', as: :teachers_forgot_password
+    get 'teachers/reset_password', to:'teachers/password#edit', as: :teachers_reset_password
+    get 'teachers/locations[', to:'pages#teacher_locations', as: :teachers_locations
+    get 'teachers/schedules', to:'pages#teacher_schedules', as: :teachers_schedules
   end
-  #get 'static_pages/home'
-  #get 'static_pages/help'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root 'static_pages#home'
   get 'help' => 'static_pages#help'
   resources :locations, only: [:create, :destroy]
-  namespace :students do
-    resources :schedules
-    resources :scheduled_students
-  end
 
 end

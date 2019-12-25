@@ -1,9 +1,11 @@
 class Schedule < ApplicationRecord
-  enum state: [:pending, :active, :finished]
+  enum status: [:pending, :active, :archived]
   belongs_to :teacher
   belongs_to :student
+  belongs_to :scheduled_student
   belongs_to :location
-  before_create :calc_next_start_time, :set_scheduled_times
+  before_create :calc_next_start_time, :set_scheduled_times, :check_self_status
+  after_destroy :check_other_status
   #before_update :calc_next_start_time
 
   scope :current, lambda { where("next_start_time > ?", Time.now) }
@@ -35,5 +37,34 @@ class Schedule < ApplicationRecord
   def change_scheduled_times
     self.set_scheduled_times += 1
     calc_next_start_time
+  end
+
+  def check_self_status
+    if self.student.schedules.active.any?
+      self.status = "archived"
+    else
+      unless self.location.schedules.any?
+        self.status = "active"
+        self.scheduled_student.status = "active"
+      end
+    end
+  end
+
+  def check_other_status
+    if self.active?
+      if self.location.schedules.pending.any?
+        schedule = self.location.schedules.pending[0]
+        schedule.status = "active"
+        schedule.save!
+        schedule.scheduled_student.schedules.each do |s|
+          unless s.active?
+            s.status = "archived"
+            s.save!
+          end
+        end
+        schedule.scheduled_student.status = "active"
+        schedule.scheduled_student.save!
+      end
+    end
   end
 end

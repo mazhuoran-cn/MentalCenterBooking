@@ -2,20 +2,20 @@
   <%= link_to "MCB", root_path %>
   <%= link_to "Help", help_path %>
   <% unless teacher_signed_in? || student_signed_in? %>
-  <%=  link_to "Student sign up", new_student_registration_path  %>
-  <%=  link_to "Teacher sign up", new_teacher_registration_path  %>
-  <%= link_to "Teacher log in", new_teacher_session_path %>
-  <%= link_to "Student log in", new_student_session_path %>
+  <%=  link_to "Student sign up", students_sign_up_path  %>
+  <%=  link_to "Teacher sign up", teachers_sign_up_path  %>
+  <%= link_to "Teacher sign in", teachers_sign_in_path %>
+  <%= link_to "Student sign in", students_sign_in_path %>
   <% end %>
   <% if teacher_signed_in? %>
-    <%= link_to "Schedules", teacher_schedules_path %>
-    <%= link_to "Locations", teacher_location_path %>
+    <%= link_to "Schedules", teachers_schedules_path %>
+    <%= link_to "Locations", teachers_locations_path %>
     <%= link_to "Settings", '#' %>
     <%= link_to "Sign out", destroy_teacher_session_path, method: "delete"%>
     <%= current_teacher.role %>
     <%= current_teacher.name %>
   <% elsif student_signed_in? %>
-    <%= link_to "Schedules", student_schedule_path %>
+    <%= link_to "Schedules", students_schedule_path %>
     <%= link_to "Settings", '#' %>
     <%= link_to "Sign out", destroy_student_session_path, method: "delete"%>
     <%= current_student.name %>

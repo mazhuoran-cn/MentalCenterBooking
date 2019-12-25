@@ -7,6 +7,7 @@ class CreateSchedules < ActiveRecord::Migration[6.0]
       t.integer :student_id
       t.integer :teacher_id
       t.integer :location_id
+      t.integer :scheduled_student_id
       t.integer :scheduled_times
       t.datetime :next_start_time
 

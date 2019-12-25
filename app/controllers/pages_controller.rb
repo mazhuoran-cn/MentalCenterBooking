@@ -1,8 +1,8 @@
 class PagesController < ApplicationController
-  before_action :authenticate_teacher!, only: [:teacher_location, :teacher_schedules]
+  before_action :authenticate_teacher!, only: [:teacher_locations, :teacher_schedules]
   before_action :authenticate_student!, only: :student_schedule
 
-  def teacher_location
+  def teacher_locations
     @location = current_teacher.locations.build
   end
 
