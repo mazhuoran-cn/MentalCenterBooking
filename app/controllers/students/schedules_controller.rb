@@ -30,10 +30,10 @@ class Students::SchedulesController < ApplicationController
   end
 
   def renew
-    @schedule = current_student.schedule
+    @schedule = current_student.schedules.active[0]
     @schedule.update(scheduled_times: @schedule.scheduled_times+1, next_start_time: @schedule.next_start_time + 1.week)
     respond_to do |format|
-      format.html {redirect_to student_schedule_path, notice: "Schedule has already renewed."}
+      format.html {redirect_to students_schedule_path, notice: "Schedule has already renewed."}
     end
   end
 

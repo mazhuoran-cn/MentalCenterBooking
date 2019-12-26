@@ -120,22 +120,16 @@ students = []
   students.append(Random.rand(5..Student.all.size))
 end
 students.uniq
+
 create_has_over_timed_schedule_student(3)
+
 students[0..30].each do |s|
   create_has_over_timed_schedule_student(s)
 end
+
 create_has_schedule_student(2)
+
 students[31..-1].each do |s|
   create_has_schedule_student(s)
 end
 
-#create_has_schedule_student(2, 1)
-#create_has_over_time_schedule_student(3, 15)
-#
-#40.times do |n|
-#  create_has_schedule_student(Random.rand(1..70),Random.rand(1..130))
-#end
-#
-#10.times do |n|
-#  create_has_over_time_schedule_student(Random.rand(1..70), Random.rand(1..130))
-#end

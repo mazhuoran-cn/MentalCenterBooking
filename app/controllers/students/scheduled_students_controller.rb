@@ -3,7 +3,7 @@ class Students::ScheduledStudentsController < ApplicationController
   def new
     if current_student.schedules.any?
       respond_to do |format|
-        format.html {redirect_to root_url, "You already have a schedule."}
+        format.html {redirect_to root_url, notice: "You already have a schedule."}
       end
     end
     @scheduled_student = current_student.build_scheduled_student

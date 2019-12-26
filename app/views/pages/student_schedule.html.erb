@@ -8,7 +8,7 @@
       <%= "Your schedule is will start at #{l.weekday}, #{s.next_start_time}." %>
     <% else %>
       <%= "Your last schedule was started at #{l.weekday}, #{s.next_start_time}. Do you want to renew schedule?" %>
-      <%= link_to "Renew schedule!", renew_student_schedule_path %>
+      <%= link_to "Renew schedule!", renew_students_schedule_path %>
     <% end %>
   <% elsif scheduled_student.schedules.pending.any? %>
     <% pending_schedules = scheduled_student.schedules.pending %>
