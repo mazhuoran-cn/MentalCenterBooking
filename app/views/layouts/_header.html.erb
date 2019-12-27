@@ -1,23 +1,51 @@
+<style type="text/css">
+  .head-label1{color: #2E2F30;font-size: larger;text-align: center;position: relative;left:24%;}
+  .head-label2{color: #2E2F30;font-size: larger;text-align: center;position: relative;left:26%}
+  .head-label3{color: #2E2F30;font-size: larger;text-align: center;position: relative;left:28%}
+  .head-label4{color: #2E2F30;font-size: larger;text-align: center;position: relative;left:30%}
+  .head-label5{color: #2E2F30;font-size: larger;text-align: center;position: relative;left:32%}
+  .head-label6{color: #2E2F30;font-size: larger;text-align: center;position: relative;left:34%}
+  /*Students Sign in Success*/
+  .head-label7{color: #2E2F30;font-size: larger;text-align: center;position: relative;left:32%}
+  .head-label8{color: #2E2F30;font-size: larger;text-align: center;position: relative;left:34%}
+  .head-label9{color: #2E2F30;font-size: larger;text-align: center;position: relative;left:36%}
+  /*Techers Sign in Success*/
+  .head-label10{color: #2E2F30;font-size: larger;text-align: center;position: relative;left:28%}
+  .head-label11{color: #2E2F30;font-size: larger;text-align: center;position: relative;left:30%}
+  .head-label12{color: #2E2F30;font-size: larger;text-align: center;position: relative;left:32%}
+  .head-label13{color: #2E2F30;font-size: larger;text-align: center;position: relative;left:34%}
+  .head-label:hover{background-color: yellow}
+
+  .info{position: relative;left: 80%;top:1%;font-family: KaiTi}
+  body{background: url("/assets/3.png");background-size: cover;background-repeat: no-repeat}
+</style>
 <header>
-  <%= link_to "MCB", root_path %>
-  <%= link_to "Help", help_path %>
+  <%= link_to "MCB", root_path ,class:'head-label1'%>
+  <%= link_to "Help", help_path ,class:'head-label2'%>
   <% unless teacher_signed_in? || student_signed_in? %>
-  <%=  link_to "Student sign up", students_sign_up_path  %>
-  <%=  link_to "Teacher sign up", teachers_sign_up_path  %>
-  <%= link_to "Teacher sign in", teachers_sign_in_path %>
-  <%= link_to "Student sign in", students_sign_in_path %>
+  <%=  link_to "Student sign up", students_sign_up_path ,class:'head-label3'%>
+  <%=  link_to "Teacher sign up", teachers_sign_up_path ,class:'head-label4' %>
+  <%= link_to "Teacher sign in", teachers_sign_in_path ,class:'head-label5'%>
+  <%= link_to "Student sign in", students_sign_in_path ,class:'head-label6'%>
+    <hr style="width:1000PX;">
   <% end %>
   <% if teacher_signed_in? %>
-    <%= link_to "Schedules", teachers_schedules_path %>
-    <%= link_to "Locations", teachers_locations_path %>
-    <%= link_to "Settings", '#' %>
-    <%= link_to "Sign out", destroy_teacher_session_path, method: "delete"%>
-    <%= current_teacher.role %>
-    <%= current_teacher.name %>
+    <%= link_to "Schedules", teachers_schedules_path ,class:'head-label10'%>
+    <%= link_to "Locations", teachers_locations_path ,class:'head-label11'%>
+    <%= link_to "Settings", '#' ,class:'head-label12'%>
+    <%= link_to "Sign out", destroy_teacher_session_path, method: "delete" ,class:'head-label13'%>
+    <div class="info">
+      当前登录老师&nbsp;
+      <%= current_teacher.role %>
+      <%= current_teacher.name %>
+    </div>
   <% elsif student_signed_in? %>
-    <%= link_to "Schedules", students_schedule_path %>
-    <%= link_to "Settings", '#' %>
-    <%= link_to "Sign out", destroy_student_session_path, method: "delete"%>
-    <%= current_student.name %>
+    <%= link_to "Schedules", students_schedule_path , class:'head-label7'%>
+    <%= link_to "Settings", '#' ,class:'head-label8' %>
+    <%= link_to "Sign out", destroy_student_session_path, method: "delete" ,class:'head-label9'%>
+    <div class="info">
+      当前登录学生
+      <%= current_student.name%>
+    </div>
   <% end %>
 </header>

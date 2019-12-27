@@ -28,7 +28,7 @@ Rails.application.routes.draw do
     get 'teachers/sign_up', to:'teachers/registrations#new', as: :teachers_sign_up
     get 'teachers/forgot_password', to:'teachers/passwords#new', as: :teachers_forgot_password
     get 'teachers/reset_password', to:'teachers/password#edit', as: :teachers_reset_password
-    get 'teachers/locations[', to:'pages#teacher_locations', as: :teachers_locations
+    get 'teachers/locations', to:'pages#teacher_locations', as: :teachers_locations
     get 'teachers/schedules', to:'pages#teacher_schedules', as: :teachers_schedules
   end
   root 'static_pages#home'
