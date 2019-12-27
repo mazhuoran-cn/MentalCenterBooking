@@ -1,14 +1,20 @@
+<style type="text/css">
+  td{text-align: center}
+  th{text-align: center}
+</style>
+<hr style="width:1000PX;">
 <h3>Locations</h3>
 <% if current_teacher.locations.any? %>
   <table>
     <thead>
     <tr>
-      <th>Place</th>
-      <th>Start Time</th>
-      <th>Finish Time</th>
-      <th>Weekday</th>
+      <th>&nbspPlace&nbsp&nbsp&nbsp&nbsp</th>
+      <th>&nbsp&nbspStart Time&nbsp&nbsp&nbsp</th>
+      <th>&nbsp&nbspFinish Time&nbsp&nbsp&nbsp</th>
+      <th>&nbsp&nbspWeekday&nbsp&nbsp&nbsp</th>
     </tr>
     </thead>
+
     <tbody>
     <% current_teacher.locations[0..-2].each do |l| %>
       <tr class="locations">
@@ -21,6 +27,7 @@
     <% end %>
     </tbody>
   </table>
+  <br/>
 <% end %>
 <section class="location_form">
   <%= render 'pages/location_form' %>

@@ -4,7 +4,7 @@ class LocationsController < ApplicationController
     @location = current_teacher.locations.build(location_params)
     if @location.save
       respond_to do |format|
-        format.html {redirect_to teacher_locations_url, notice: "New location created! "}
+        format.html {redirect_to teachers_locations_url, notice: "New location created! "}
       end
     else
       respond_to do |format|
@@ -17,7 +17,7 @@ class LocationsController < ApplicationController
     @location = Location.find(params[:id])
     @location.destroy
     respond_to do |format|
-      format.html {redirect_to teacher_locations_url, notice: 'Location was successfully destroyed.'}
+      format.html {redirect_to teachers_locations_url, notice: 'Location was successfully destroyed.'}
     end
   end
 
