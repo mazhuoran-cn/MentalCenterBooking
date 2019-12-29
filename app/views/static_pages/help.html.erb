@@ -33,9 +33,13 @@
     </div>
     <div class="row mt-4">
       <div class="col-md-6 mx-auto text-center">
+        <% unless teacher_signed_in? || student_signed_in? %>
         <h5 class="mb-4">Ready to Book?</h5>
 <!--        <a href="#" class="btn btn-primary">Get started now</a>-->
+
           <a href="students/sign_in" class = "btn btn-primary">Get started now</a>
+
+          <% end %>
       </div>
     </div>
   </div>

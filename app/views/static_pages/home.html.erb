@@ -12,10 +12,18 @@
       <div class="col-md-8 mx-auto my-auto text-center">
         <span class="text-uppercase text-muted small-xl">Mental Center Booking</span>
         <h1 class="display-4 mt-2 mb-5">If you need any psychological consultation, please start your journey on this website</h1>
-        <a href="students/sign_in" class="btn btn-primary d-inline-flex flex-row align-items-center">
+        <%if student_signed_in? %>
+        <a href="students/schedule" class="btn btn-primary d-inline-flex flex-row align-items-center">
           <em data-feather="twitter" width="20" height="20" class="mr-2"></em>
           Start your Journal
         </a>
+        <% else teacher_signed_in?%>
+          <a href="teachers/schedules" class="btn btn-primary d-inline-flex flex-row align-items-center">
+            <em data-feather="twitter" width="20" height="20" class="mr-2"></em>
+            Start your Journal
+          </a>
+
+         <% end %>
         <div class="demo-wrapper text-center">
           <a href="help" class="d-flex flex-row align-items-center justify-content-center text-muted demo-sample">
             <em data-feather="download-cloud" width="17" height="17" class="mr-2"></em>
