@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_13_052527) do
+ActiveRecord::Schema.define(version: 2020_01_03_060201) do
 
   create_table "locations", force: :cascade do |t|
     t.integer "teacher_id"
@@ -71,6 +71,8 @@ ActiveRecord::Schema.define(version: 2019_12_13_052527) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "approved", default: false, null: false
+    t.index ["approved"], name: "index_teachers_on_approved"
     t.index ["email"], name: "index_teachers_on_email", unique: true
     t.index ["name"], name: "index_teachers_on_name"
     t.index ["reset_password_token"], name: "index_teachers_on_reset_password_token", unique: true

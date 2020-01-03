@@ -60,7 +60,9 @@
               <a class="nav-link page-scroll" href="#blog"><%= link_to "Locations", teachers_locations_path %></a>
             </li>
             <li class="nav-item ">
-              <a class="nav-link page-scroll" href="#blog"><%= link_to "Settings", '#' %></a>
+              <% if current_teacher.admin? %>
+              <a class="nav-link page-scroll" href="#blog"><%= link_to "Settings", rails_admin_path %></a>
+                <% end %>
             </li>
             <li class="nav-item ">
               <a class="nav-link page-scroll" href="#blog"><%= link_to "Sign out", destroy_teacher_session_path, method: "delete" %></a>
