@@ -1,6 +1,6 @@
 <style type="text/css">
   .text{width: 50%;}
-  .start-time{width: 50%;color: red;font-size: 150%}
+  .start-time{width: 50%;color: #B00100;font-size: 150%}
   div{display: inline}
 </style>
 <!--逻辑麻烦，修改界面请认真阅读，特别是不要缺少<%#end%>-->
@@ -78,18 +78,34 @@
             <h6>Do you want to cancel your schedule?</h6>
             <%= link_to "Destroy schedule!", delete_scheduled_students_path, method: "delete" ,class:"btn btn-primary"%>
           </div>
-          <% if Time.now < s.next_start_time %>
+          <% if current_student.scheduled_student %>
+            <% scheduled_student = current_student.scheduled_student %>
+
+
+            <% if scheduled_student.schedules.active.any? %>
+              <% s = scheduled_student.schedules.active[0] %>
+              <% if Time.now < s.next_start_time %>
           <div class="col-md-6 mb-5" style="text-align: center">
             <h6>Creat a new schedule!</h6>
             <%= link_to 'New schedule!', new_scheduled_students_path,class:"btn btn-primary"%>
           </div>
-          <% else %>
-            <div class="col-md-6 mb-5" style="text-align: center">
-              <h6>Renew your schedule!</h6>
-              <%= link_to "Renew schedule!", renew_students_schedule_path,class:"btn btn-primary" %>
 
+              <% else %>
+                <div class="col-md-6 mb-5" style="text-align: center">
+                  <h6>Renew a schedule!</h6>
+                  <%= link_to 'Renew schedule!', renew_students_schedule_path,class:"btn btn-primary"%>
+
+                </div>
+              <% end %>
+        <% end %>
+            <% else %>
+            <div class="col-md-6 mb-5" style="text-align: center">
+              <h6>Creat a new schedule!</h6>
+              <%= link_to 'New schedule!', new_scheduled_students_path,class:"btn btn-primary"%>
             </div>
           <% end %>
+
+
           <div class="col-md-6 mb-5">
             <h6>Destory</h6>
             <p class="text-muted">Cancellation of appointment means that consultation will be abandoned</p>
